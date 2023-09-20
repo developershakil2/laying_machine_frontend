@@ -5,8 +5,10 @@ import React, {useState, useEffect, createContext} from 'react'
 const inter = Inter({ subsets: ['latin'] });
 import axios from 'axios';
 export const Api = createContext();
+
+
 export const metadata = {
-  title: 'laying machine play & earn',
+  title: 'laying machine play and earn',
   description: 'laying machine best investment place play and earn',
 }
 
