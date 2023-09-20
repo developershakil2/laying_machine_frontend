@@ -1,6 +1,20 @@
-import Image from 'next/image'
+
+'use client'
 import Nav from './(components)/Nav'
+import React, {useState, useEffect} from 'react';
+import { useRouter } from 'next/navigation';
 export default function Home() {
+ const {push} = useRouter();
+
+  useEffect(()=>{
+      const data = localStorage.getItem('usersOb');
+         const user = JSON.parse(data);
+         if(user?.userId){
+          push('/dashboard');
+         }
+  },[])
+      
+
   return (
     <main className="flex min-h-screen home_component1 flex-col items-center justify-between ">
       <Nav login="login" register="register" />
