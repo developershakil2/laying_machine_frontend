@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-const contact = () => {
+const Farm = () => {
   const {push} = useRouter();
   const [user, setUser] = useState('');
   const [resBuy, setResBuy] = useState('');
@@ -23,8 +23,9 @@ const contact = () => {
 
   const [m2, setM2] = useState(false);
   const [farm, setFarm] = useState([]);
+  const [feedLength, setFeedLength] = useState()
   const id = user?.userId;
-console.log(user.userId)
+console.log(feedLength, 'feed')
 
   useEffect(() => {
     const data = localStorage.getItem('usersOb');
@@ -44,9 +45,25 @@ console.log(user.userId)
       });
   };
 
+
+  const feedLenght = () => {
+    axios
+      .get(`https://layingmachine.onrender.com/getuniqueuser/${user.userId}`)
+      .then((res) => {
+        const data = res.data;
+        const feed = data.feed.length;
+        setFeedLength(feed);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
   useEffect(() => {
  
       getData();
+      feedLenght();
    
   }, [user]);
 
@@ -200,7 +217,7 @@ console.log(user.userId)
               </button>
               <button className="backdrop-blur-[70px] my-1 bg-[#040b0f9a] text-white mx-2 font-black text-lg px-4 py-2 rounded-xl flex items-center">
                 {' '}
-                feeds bag 0 <img src="images/food.png" alt="feed" className="w-[35px] h-[35px] ml-2" />
+                feeds bag {feedLength} <img src="images/food.png" alt="feed" className="w-[35px] h-[35px] ml-2" />
               </button>
               <button
                 onClick={() => setModalHandle('flex')}
@@ -276,4 +293,4 @@ console.log(user.userId)
   );
 };
 
-export default contact;
+export default Farm;
