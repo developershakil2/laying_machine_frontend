@@ -17,8 +17,12 @@ const Farm = () => {
   const [m2, setM2] = useState(false);
   const [farm, setFarm] = useState([]);
   const id = user.userId;
-  const data = localStorage.getItem('usersOb');
-  const codata = JSON.parse(data);
+  const [codata, setcodata] = useState(null)
+  useEffect(()=>{
+    const data = localStorage.getItem('usersOb');
+    const codata = JSON.parse(data);
+    setcodata(codata);
+   },[])
   console.log(farm)
 
    if(id == null){
