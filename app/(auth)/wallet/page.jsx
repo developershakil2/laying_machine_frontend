@@ -218,7 +218,7 @@ console.log(err)
                       <p className="font-black">Balance</p>
                       <div className="h-[1px] w-[80%] mx-auto bg-black"></div>
                               
-                      <p className="font-black text-xl">₱{Suser.balance.toFixed(2)}</p>
+                      <p className="font-black text-xl">₱{Suser?.balance.toFixed(2)}</p>
                     </div>
                     <div className="cloud_bal2 flex justify-center items-center flex-col">
                       <p className="font-black">Referral Bonus</p>
