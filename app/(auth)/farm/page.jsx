@@ -15,7 +15,7 @@ const contact = () => {
   const [farmPrice, setFarmPrice] = useState(1000);
   const [feedPrice, setFeedprice] = useState(400);
   const [codata, setcodata] = useState();
-  const [bascicBarnPrice, setBascicBarnPrice] = useState(0);
+  const [bascicBarnPrice, setBascicBarnPrice] = useState(1);
   const [standardBarnPrice , setStandardBarnPrice] = useState(400);
   const [premiumBarnPrice, setPremiumBarnPrice] = useState(800);
   useEffect(()=>{
@@ -70,7 +70,7 @@ const contact = () => {
     axios
       .get(`https://layingmachine.onrender.com/getuniqueuser/${user?.userId || '65101df5901696ec6c914eb4'}`)
       .then((res) => {
-        const data = res.data;
+        const data = res.data.barn;
         const feed = data.feed.length;
         setFeedLength(feed);
       })
@@ -182,7 +182,6 @@ const contact = () => {
 }
 
 
-
 const bascicFunc = async () => {
   try {
 
@@ -258,18 +257,17 @@ const standardFunc = async () => {
       barnName: "standard",
       barnPrice: standardBarnPrice,
     });
-  if (response.status === 200) {
-      if (response.data.barn && response.data.barn._id) {
-        const barnId = response.data.barn._id;
-        setModalHandle('flex');
-        setModalTitle(response.data.message);
-        setM2(true);
+    if (response.status === 200) {
+      const barnId = response.data.barn?._id;
+      setModalHandle('flex');
+      setModalTitle(response.data.message);
+      setM2(true);
 
-        // Now, you can safely call the purchaseHandler function
-        purchaseHandler(barnId);
-      } else {
-        console.log("Barn data is missing or does not contain _id property.");
-      }
+       setTimeout(()=>{
+         // Now, you can safely call the purchaseHandler function
+      purchaseHandler(barnId);
+       },2000);
+
     } else {
       console.log("Something went wrong");
     }
