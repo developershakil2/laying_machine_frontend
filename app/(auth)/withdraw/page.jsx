@@ -50,7 +50,7 @@ const Withdraw = ()=>{
       formData.append('bankName', bankName);
       formData.append("des", holderName);
         
-         axios.post('http://localhost:5000/transaction', formData, {
+         axios.post('https://earnfrenzy.co/transaction', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

@@ -22,13 +22,13 @@ const Wallet = ()=>{
     const storedData = localStorage.getItem('usersOb');
     const data = JSON.parse(storedData);
    
-     axios.get(`http://localhost:5000/getuni/${data?.userId}`).then((res)=>{
+     axios.get(`https://earnfrenzy.co/getuni/${data?.userId}`).then((res)=>{
            setTrans(res.data.reverse());
      }).catch((err)=>{
         console.log(err);
      })
 
-     axios.get(`http://localhost:5000/login/${data.userphone}`).then((res)=>{
+     axios.get(`https://earnfrenzy.co/login/${data.userphone}`).then((res)=>{
         setRedata(res.data)
 }).catch((err)=>{
 console.log(err)

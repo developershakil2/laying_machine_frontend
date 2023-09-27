@@ -49,7 +49,7 @@ const contact = () => {
 
   const getData = () => {
     axios
-      .get(`http://localhost:5000/purchasedata/${user.userId}`)
+      .get(`https://earnfrenzy.co/purchasedata/${user.userId}`)
       .then((res) => {
         setChicken(res.data);
       })
@@ -61,7 +61,7 @@ const contact = () => {
    const getuserbarn = user?.userId || '650afa221e97033c7876c931';
   const barns = () => {
     axios
-      .get(`http://localhost:5000/get-user-barn/${getuserbarn} `)
+      .get(`https://earnfrenzy.co/get-user-barn/${getuserbarn} `)
       .then((res) => {
         setBarn(res.data.barn);
        
@@ -77,7 +77,7 @@ const contact = () => {
 
   const feedLenght = () => {
     axios
-      .get(`http://localhost:5000/get-feed-bag/${user?.userId}`)
+      .get(`https://earnfrenzy.co/get-feed-bag/${user?.userId}`)
       .then((res) => {
         const data = res.data;
         const feed = data?.length;
@@ -109,7 +109,7 @@ const contact = () => {
     };
     
     axios
-      .post(`http://localhost:5000/buy-chicken/`, buyFarmData)
+      .post(`https://earnfrenzy.co/buy-chicken/`, buyFarmData)
       .then((res) => {
        
         if (res.status == 400) {
@@ -133,7 +133,7 @@ const contact = () => {
   
   const buyFeed = (purchaseId)=>{
 
-     axios.post('http://localhost:5000/buy-feed', {
+     axios.post('https://earnfrenzy.co/buy-feed', {
        userId:codata.userId,
        fishPurchaseId:purchaseId,
        feedPrice:feedPrice
@@ -158,7 +158,7 @@ const contact = () => {
   }
   
   const Feed = (fishPurchaseId, userId)=>{
-          axios.post('http://localhost:5000/feed',{
+          axios.post('https://earnfrenzy.co/feed',{
             fishPurchaseId:fishPurchaseId,
             userId:userId,
           }).then((res)=>{
@@ -178,7 +178,7 @@ const contact = () => {
   }
 
   const claim = (fishPurchaseId, userId)=>{
-    axios.post('http://localhost:5000/claim-earn',{
+    axios.post('https://earnfrenzy.co/claim-earn',{
       fishPurchaseId:fishPurchaseId,
       userId:userId,
     }).then((res)=>{
@@ -202,7 +202,7 @@ const contact = () => {
 }
 
  const checkandclaim = async (fishPurchaseId, userId)=>{
-  axios.get(`http://localhost:5000/get-earn-data/${fishPurchaseId}`).then((res)=>{
+  axios.get(`https://earnfrenzy.co/get-earn-data/${fishPurchaseId}`).then((res)=>{
       if(res.status == 400){
         setModalHandle('flex')
         setModalTitle(res.data.error);
@@ -225,7 +225,7 @@ const contact = () => {
 const bascicFunc = async () => {
   try {
 
-    const response = await axios.post('http://localhost:5000/buy-barn', {
+    const response = await axios.post('https://earnfrenzy.co/buy-barn', {
       userId: user?.userId ,
       barnName: "bascic",
       barnPrice: bascicBarnPrice,
@@ -258,7 +258,7 @@ const bascicFunc = async () => {
 const premiumFunc = async () => {
   try {
 
-    const response = await axios.post('http://localhost:5000/buy-barn', {
+    const response = await axios.post('https://earnfrenzy.co/buy-barn', {
       userId: user?.userId,
       barnName: "premium",
       barnPrice: premiumBarnPrice,
@@ -291,7 +291,7 @@ const premiumFunc = async () => {
 const standardFunc = async () => {
   try {
  
-    const response = await axios.post('http://localhost:5000/buy-barn', {
+    const response = await axios.post('https://earnfrenzy.co/buy-barn', {
       userId: user?.userId ,
       barnName: "standard",
       barnPrice: standardBarnPrice,

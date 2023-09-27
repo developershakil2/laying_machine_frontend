@@ -14,7 +14,7 @@ const ApiProvider = ({children})=>{
     
     
     useEffect(()=>{
-        axios.get(`http://localhost:5000/getuniqueuser/${userId.userId?userId.userId: '650afa221e97033c7876c931' }`).then((res)=>{
+        axios.get(`https://earnfrenzy.co/getuniqueuser/${userId.userId?userId.userId: '650afa221e97033c7876c931' }`).then((res)=>{
               setUser(res.data);
         })
     },[userId])

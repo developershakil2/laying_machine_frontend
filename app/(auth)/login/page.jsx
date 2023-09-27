@@ -28,7 +28,7 @@ if(phone === ""){
 }else if(pass === ""){
  alert("please enter your password")
 }else{
- axios.get(`http://localhost:5000/login/${phone}`)
+ axios.get(`https://earnfrenzy.co/login/${phone}`)
  .then((res) => {
    const logData = res.data;
    const authorizationHeader = res.headers.authorization;

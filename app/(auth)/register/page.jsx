@@ -80,7 +80,7 @@ const Register = ()=>{
         const uniqueFilename = `proofImg_${Date.now()}.jpg`;
   
         formData.append('profilePicture', blob, uniqueFilename);
-        axios.post("http://localhost:5000/user", formData, {
+        axios.post("https://earnfrenzy.co/user", formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
