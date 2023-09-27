@@ -33,7 +33,7 @@ const Refer= ()=>{
                          <img className="w-[100%] h-[180px] rounded-xl" src="images/refer.png" alt="refer"/>
                           </div>
                           <div className="w-full rounded-xl py-2 ">
-                            <input  type="text" value={`https://earnfrenzy.co/register/?id=${user.userId}`}  className="outline-none w-full text-white font-black placeholder-white px-2 py-2 rounded-xl border-[1px] bg-transparent"/>
+                            <input  type="text" value={`https://layingmachine.onrender.com/register/?id=${user.userId}`}  className="outline-none w-full text-white font-black placeholder-white px-2 py-2 rounded-xl border-[1px] bg-transparent"/>
                           </div>
                           <div className="w-full rounded-xl py-2 ">
                            

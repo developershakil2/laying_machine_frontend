@@ -22,13 +22,13 @@ const Dashboard = ()=>{
             const data = JSON.parse(storedData);
             setUserId(data);
             setUserData(data);
-             axios.get(`https://earnfrenzy.co/getuni/${data?.userId}`).then((res)=>{
+             axios.get(`https://layingmachine.onrender.com/getuni/${data?.userId}`).then((res)=>{
                    setTrans(res.data.reverse());
              }).catch((err)=>{
                 console.log(err);
              })
     
-             axios.get(`https://earnfrenzy.co/login/${data.userphone}`).then((res)=>{
+             axios.get(`https://layingmachine.onrender.com/login/${data.userphone}`).then((res)=>{
                 setRedata(res.data)
     }).catch((err)=>{
        console.log(err)

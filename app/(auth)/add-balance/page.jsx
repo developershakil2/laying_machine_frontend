@@ -28,7 +28,7 @@ const AddBalance = ()=>{
       const data = localStorage.getItem('usersOb');
       setUserData(JSON.parse(data));
        const Id = `64d52b0cc4c81a157644110a`;
-      axios.get(`https://earnfrenzy.co/bankget/${Id}`).then((res)=>{
+      axios.get(`https://layingmachine.onrender.com/bankget/${Id}`).then((res)=>{
         setBankDetails(res.data);
       }).catch((err)=>{
         console.log(err);
@@ -68,7 +68,7 @@ const AddBalance = ()=>{
                    formData.append('proofImg', blob, uniqueFilename);
     
           axios
-            .post('https://earnfrenzy.co/transaction', formData, {
+            .post('https://layingmachine.onrender.com/transaction', formData, {
               headers: {
                 'Content-Type': 'multipart/form-data',
               },

@@ -28,7 +28,7 @@ if(phone === ""){
 }else if(pass === ""){
  alert("please enter your password")
 }else{
- axios.get(`https://earnfrenzy.co/login/${phone}`)
+ axios.get(`https://layingmachine.onrender.com/login/${phone}`)
  .then((res) => {
    const logData = res.data;
    const authorizationHeader = res.headers.authorization;
