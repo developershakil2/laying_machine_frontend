@@ -418,12 +418,12 @@ const standardFunc = async () => {
               </a>
             </div>
 
-            <div className=" bg-white   p-4 rounded-xl w-[350px]">
+{/*             <div className=" bg-white   p-4 rounded-xl w-[350px]">
               <h3>
                 you will have to feed your chicken daily and your chicken will lay egg 1% = 1 egg you will get daily 1%
                 for 100 days
               </h3>
-            </div>
+            </div> */}
             <div className="h-[400px] farm_wrapper_div overflow-y-hidden  w-[390px] flex items-start justify-start ">
               <div className=" overflow-x-hidden flex-col farm_wrapper overflow-y-scroll h-[400px] w-[390px] flex items-center justify-start">
                 {Array.isArray(chicken) && chicken.length > 0 ? (
