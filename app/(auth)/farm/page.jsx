@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-const contact = () => {
+const Farm = () => {
   const {push} = useRouter();
   const [user, setUser] = useState('');
   const [resBuy, setResBuy] = useState('');
@@ -15,7 +15,7 @@ const contact = () => {
   const [farmPrice, setFarmPrice] = useState(1000);
   const [feedPrice, setFeedprice] = useState(400);
   const [codata, setcodata] = useState();
-  const [bascicBarnPrice, setBascicBarnPrice] = useState(1);
+  const [bascicBarnPrice, setBascicBarnPrice] = useState(0);
   const [standardBarnPrice , setStandardBarnPrice] = useState(400);
   const [premiumBarnPrice, setPremiumBarnPrice] = useState(800);
   useEffect(()=>{
@@ -31,7 +31,7 @@ const contact = () => {
   const [testing, setTesting] = useState(null)
   const id = user?.userId;
 
- console.log(user, 'testing')
+ console.log(user, 'testing');
   useEffect(() => {
     const data = localStorage.getItem('usersOb');
     const codata = JSON.parse(data);
@@ -40,7 +40,7 @@ const contact = () => {
 
   const getData = () => {
     axios
-      .get(`https://layingmachine.onrender.com/purchasedata/${user.userId}`)
+      .get(`http://localhost:5000/purchasedata/${user.userId}`)
       .then((res) => {
         setChicken(res.data);
       })
@@ -52,7 +52,7 @@ const contact = () => {
 
   const barns = () => {
     axios
-      .get(`https://layingmachine.onrender.com/get-user-barn/${user.userId}`)
+      .get(`http://localhost:5000/get-user-barn/${user.userId}`)
       .then((res) => {
         setBarn(res.data.barn);
        
@@ -68,9 +68,9 @@ const contact = () => {
 
   const feedLenght = () => {
     axios
-      .get(`https://layingmachine.onrender.com/getuniqueuser/${user?.userId || '65101df5901696ec6c914eb4'}`)
+      .get(`http://localhost:5000/getuniqueuser/${user?.userId || '65101df5901696ec6c914eb4'}`)
       .then((res) => {
-        const data = res.data.barn;
+        const data = res.data;
         const feed = data.feed.length;
         setFeedLength(feed);
       })
@@ -99,7 +99,7 @@ const contact = () => {
     };
     
     axios
-      .post(`https://layingmachine.onrender.com/buy-chicken/`, buyFarmData)
+      .post(`http://localhost:5000/buy-chicken/`, buyFarmData)
       .then((res) => {
        
         if (res.status == 400) {
@@ -121,7 +121,7 @@ const contact = () => {
   
   const buyFeed = (purchaseId)=>{
 
-     axios.post('https://layingmachine.onrender.com/buy-feed', {
+     axios.post('http://localhost:5000/buy-feed', {
        userId:codata.userId,
        fishPurchaseId:purchaseId,
        feedPrice:feedPrice
@@ -144,7 +144,7 @@ const contact = () => {
   }
   
   const Feed = (fishPurchaseId, userId)=>{
-          axios.post('https://layingmachine.onrender.com/feed',{
+          axios.post('http://localhost:5000/feed',{
             fishPurchaseId:fishPurchaseId,
             userId:userId,
           }).then((res)=>{
@@ -163,7 +163,7 @@ const contact = () => {
   }
 
   const claim = (fishPurchaseId, userId)=>{
-    axios.post('https://layingmachine.onrender.com/claim-earn',{
+    axios.post('http://localhost:5000/claim-earn',{
       fishPurchaseId:fishPurchaseId,
       userId:userId,
     }).then((res)=>{
@@ -182,10 +182,11 @@ const contact = () => {
 }
 
 
+
 const bascicFunc = async () => {
   try {
 
-    const response = await axios.post('https://layingmachine.onrender.com/buy-barn', {
+    const response = await axios.post('http://localhost:5000/buy-barn', {
       userId: user.userId,
       barnName: "bascic",
       barnPrice: bascicBarnPrice,
@@ -196,11 +197,8 @@ const bascicFunc = async () => {
       setModalHandle('flex');
       setModalTitle(response.data.message);
       setM2(true);
-
-       setTimeout(()=>{
-         // Now, you can safely call the purchaseHandler function
       purchaseHandler(barnId);
-       },2000);
+     
 
     } else {
       console.log("Something went wrong");
@@ -218,7 +216,7 @@ const bascicFunc = async () => {
 const premiumFunc = async () => {
   try {
 
-    const response = await axios.post('https://layingmachine.onrender.com/buy-barn', {
+    const response = await axios.post('http://localhost:5000/buy-barn', {
       userId: user.userId,
       barnName: "premium",
       barnPrice: premiumBarnPrice,
@@ -230,10 +228,9 @@ const premiumFunc = async () => {
       setModalTitle(response.data.message);
       setM2(true);
 
-       setTimeout(()=>{
-         // Now, you can safely call the purchaseHandler function
+     
       purchaseHandler(barnId);
-       },2000);
+     
 
     } else {
       console.log("Something went wrong");
@@ -252,22 +249,23 @@ const premiumFunc = async () => {
 const standardFunc = async () => {
   try {
  
-    const response = await axios.post('https://layingmachine.onrender.com/buy-barn', {
+    const response = await axios.post('http://localhost:5000/buy-barn', {
       userId: user.userId,
       barnName: "standard",
       barnPrice: standardBarnPrice,
     });
-    if (response.status === 200) {
-      const barnId = response.data.barn?._id;
-      setModalHandle('flex');
-      setModalTitle(response.data.message);
-      setM2(true);
+  if (response.status === 200) {
+      if (response.data.barn && response.data.barn._id) {
+        const barnId = response.data.barn._id;
+        setModalHandle('flex');
+        setModalTitle(response.data.message);
+        setM2(true);
 
-       setTimeout(()=>{
-         // Now, you can safely call the purchaseHandler function
-      purchaseHandler(barnId);
-       },2000);
-
+        // Now, you can safely call the purchaseHandler function
+        purchaseHandler(barnId);
+      } else {
+        console.log("Barn data is missing or does not contain _id property.");
+      }
     } else {
       console.log("Something went wrong");
     }
@@ -501,4 +499,4 @@ const standardFunc = async () => {
   );
 };
 
-export default contact;
+export default Farm;
