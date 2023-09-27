@@ -16,12 +16,16 @@ const Wallet = ()=>{
 
   const [reData, setRedata] = useState('');
   const [trans , setTrans] = useState('');
-
+  const [balance, setBalance] = useState(null);
+  const [refBal, setRefBal] = useState(null);
 
   useEffect(()=>{
     const storedData = localStorage.getItem('usersOb');
     const data = JSON.parse(storedData);
-   
+    const ub = typeof data?.userBal === 'number' ? data.userBal.toFixed(2) : '0.00';
+    const rb = typeof data?.refBal === 'number' ? data.refBal.toFixed(2) : '0.00';
+    setRefBal(rb);
+     setBalance(ub);
      axios.get(`https://layingmachine.onrender.com/getuni/${data?.userId}`).then((res)=>{
            setTrans(res.data.reverse());
      }).catch((err)=>{
@@ -35,6 +39,7 @@ console.log(err)
 })
  },[]);
 
+ 
 
 
 
@@ -218,12 +223,12 @@ console.log(err)
                       <p className="font-black">Balance</p>
                       <div className="h-[1px] w-[80%] mx-auto bg-black"></div>
                               
-                      <p className="font-black text-xl">₱{ Suser.balance.toFixed(2)}</p>
+                      <p className="font-black text-xl">₱{balance}</p>
                     </div>
                     <div className="cloud_bal2 flex justify-center items-center flex-col">
                       <p className="font-black">Referral Bonus</p>
                       <div className="h-[1px] w-[80%] mx-auto bg-black"></div>
-                      <p className="font-black text-xl">₱{ Suser?.refBal.toFixed(2)}</p>
+                      <p className="font-black text-xl">₱{refBal}</p>
                     </div>
         
                        
