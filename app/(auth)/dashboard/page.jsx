@@ -14,14 +14,33 @@ const Dashboard = ()=>{
           const {Suser, setUserId} = useContext(Api);
           const [balance, setBalance] = useState(null);
           const [refBal, setRefBal] = useState(null);
-             console.log(Suser, "balance")
-              
+          const [getUserId, setGetUserId] = useState(null);
+          const [currentUserId , setCurrentUserId] = useState(null);
+             console.log(Suser, "balance");
+           
+             console.log(currentUserId, 'current user id is here');
+
+             useEffect(()=>{
+              const getuserBalnce = async ()=>{
+                try{
+                const response = await axios.get(`https://layingmachine.onrender.com/getuniqueuser/${getUserId}`);
+                      if(response.status == 200){
+                        setCurrentUserId(response.data.user);
+                      }
+                }catch(error){
+                         console.log("api error")
+                }
+              }
+              getuserBalnce();
+             },[getUserId])
 
 
           useEffect(()=>{
+            
             const storedData = localStorage.getItem('usersOb');
             const data = JSON.parse(storedData);
-            const ub = typeof data?.userBal === 'number' ? data.userBal.toFixed(2) : '0.00';
+            setGetUserId(data?.userId);
+            const ub = typeof data?.userBal === 'number' ?currentUserId?.balance.toFixed(): data.userBal? data.userBal.toFixed(2) : '0.00';
             const rb = typeof data?.refBal === 'number' ? data.refBal.toFixed(2) : '0.00';
             setRefBal(rb);
              setBalance(ub);
@@ -217,12 +236,12 @@ const Dashboard = ()=>{
         <div className="cloud_bal1 flex justify-center items-center flex-col">
             <p className="font-black">Balance</p>
             <div className="h-[1px] w-[80%] mx-auto bg-black"></div>
-            <p className="font-black text-xl">₱{balance}</p>
+            <p className="font-black text-xl">₱{currentUserId?.balance.toFixed(2)}</p>
           </div>
           <div className="cloud_bal2 flex justify-center items-center flex-col">
             <p className="font-black">Referral Bonus</p>
             <div className="h-[1px] w-[80%] mx-auto bg-black"></div>
-            <p className="font-black text-xl">₱{refBal}</p>
+            <p className="font-black text-xl">₱{currentUserId?.refBal.toFixed(2)}</p>
           </div>
         <div className="hu1 absolute bottom-2 left-2">
           <img className="w-[300px] h-[300px] rounded-full" src='images/chickenhello.gif' alt="home"/>
