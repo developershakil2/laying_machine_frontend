@@ -6,10 +6,20 @@ import axios from 'axios';
 
 const AddBalance = ()=>{
     const [user, setUser] = useState('');
-     
+    
+
+const [bankDet, setBankDet] = useState('');
+console.log(bankDet, 'consol')
     useEffect(()=>{
       const data = localStorage.getItem('usersOb');
       setUser(JSON.parse(data));
+
+      const Id = `65151b2e29aeef136d9243ca`;
+      axios.get(`https://layingmachine.onrender.com/bankget/${Id}`).then((res)=>{
+        setBankDet(res.data);
+      }).catch((err)=>{
+        console.log(err);
+      })
     },[]);
 
 
@@ -163,11 +173,11 @@ const AddBalance = ()=>{
     <h4 className="font-black text-white">Bank Details</h4>
     <div className="w-full h-[1px] bg-white "></div>
     <div className='border-[1px] rounded-lg p-3'>
-        <p className="font-black text-white  p-1">Bank Name : Asia United Bank</p>
+        <p className="font-black text-white  p-1">Bank Name : {bankDet.bankName}</p>
         <div className="w-full h-[1px] bg-white "></div>
-        <p className="font-black text-white  p-1">Account Holder : Vergara Grayson thedore</p>
+        <p className="font-black text-white  p-1">Account Holder : {bankDet.bankAccountHolderName}</p>
         <div className="w-full h-[1px] bg-white "></div>
-        <p className="font-black text-white  p-1">Account : 12345678</p>
+        <p className="font-black text-white  p-1">Account : {bankDet.bankNumber}</p>
     </div>
 
   
