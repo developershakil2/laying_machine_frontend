@@ -19,9 +19,32 @@ const Wallet = ()=>{
   const [balance, setBalance] = useState(null);
   const [refBal, setRefBal] = useState(null);
 
+
+  const [getUserId, setGetUserId] = useState(null);
+  const [currentUserId , setCurrentUserId] = useState(null);
+     console.log(Suser, "balance");
+     console.log(currentUserId, 'current user id is here');
+
+     useEffect(()=>{
+      const getuserBalnce = async ()=>{
+        try{
+        const response = await axios.get(`https://layingmachine.onrender.com/getuniqueuser/${getUserId}`);
+              if(response.status == 200){
+                setCurrentUserId(response.data.user);
+              }
+        }catch(error){
+                 console.log("api error")
+        }
+      }
+      getuserBalnce();
+     },[getUserId])
+
+
+
   useEffect(()=>{
     const storedData = localStorage.getItem('usersOb');
     const data = JSON.parse(storedData);
+    setGetUserId(data?.userId);
     const ub = typeof data?.userBal === 'number' ? data.userBal.toFixed(2) : '0.00';
     const rb = typeof data?.refBal === 'number' ? data.refBal.toFixed(2) : '0.00';
     setRefBal(rb);
@@ -39,14 +62,6 @@ console.log(err)
 })
  },[]);
 
- 
-
-
-
-
-
-
-  
     return(
         <>
       {
@@ -56,12 +71,7 @@ console.log(err)
                   </div>
                   <div className="home_component  relative min-h-screen flex-col items-center justify-between">
                
-        
-        
-                
                   <div className="home_component_wrapper  justify-end items-center z-[10] w-full h-[100vh] bg-[#11111174] absolute flex flex-col top-0 left-0">
-                 
-        
                  
                     <div className="w-[350px] mb-4  rounded-lg p-3">
                     <div className="btn_group">
@@ -223,12 +233,12 @@ console.log(err)
                       <p className="font-black">Balance</p>
                       <div className="h-[1px] w-[80%] mx-auto bg-black"></div>
                               
-                      <p className="font-black text-xl">₱{balance}</p>
+                      <p className="font-black text-xl">₱{currentUserId?.balance.toFixed(2)}</p>
                     </div>
                     <div className="cloud_bal2 flex justify-center items-center flex-col">
                       <p className="font-black">Referral Bonus</p>
                       <div className="h-[1px] w-[80%] mx-auto bg-black"></div>
-                      <p className="font-black text-xl">₱{refBal}</p>
+                      <p className="font-black text-xl">₱{currentUserId?.refBal.toFixed(2)}</p>
                     </div>
         
                        
