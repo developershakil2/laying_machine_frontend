@@ -19,6 +19,23 @@ const contact = () => {
   const [standardBarnPrice , setStandardBarnPrice] = useState(400);
   const [premiumBarnPrice, setPremiumBarnPrice] = useState(800);
 
+       console.log(bascicBarnPrice, 'data')
+  useEffect(()=>{
+    const data = async ()=>{
+      const response   = await axios.get('https://layingmachine.onrender.com/price');
+
+       if(response.status ==200){
+        const {basicBarnPrice, standardBarnPrice, premiumBarnPrice, chickenPrice, feedBagPrice} = response.data[0];
+        setBascicBarnPrice(basicBarnPrice);
+        setStandardBarnPrice(standardBarnPrice);
+        setPremiumBarnPrice(premiumBarnPrice,)
+        setFarmPrice(chickenPrice);
+        setFeedprice(feedBagPrice);
+       }
+    };
+    data()
+  },[codata])
+
   useEffect(()=>{
     const data = localStorage.getItem('usersOb');
     const codata = JSON.parse(data);
