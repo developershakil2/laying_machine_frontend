@@ -435,20 +435,24 @@ const standardFunc = async () => {
               </a>
             </div>
 
-{/*             <div className=" bg-white   p-4 rounded-xl w-[350px]">
+             {/*             <div className=" bg-white   p-4 rounded-xl w-[350px]">
               <h3>
                 you will have to feed your chicken daily and your chicken will lay egg 1% = 1 egg you will get daily 1%
                 for 100 days
               </h3>
             </div> */}
-            <div className="h-[400px] farm_wrapper_div overflow-y-hidden  w-[390px] flex items-start justify-start ">
-              <div className=" overflow-x-hidden flex-col farm_wrapper overflow-y-scroll h-[400px] w-[390px] flex items-center justify-start">
+            
+            {
+              chicken.length > 1 ? <h2 className="text-left w-[320px] my-4 font-black text-sm text-white flex items-center">swipe right to see all chickens <img src="images/ta.png" alt="ta" className="w-[20px] h-[20px] ml-2"/></h2>         : ''
+            }
+            <div className="h-[400px] mb-14 farm_wrapper_div overflow-y-hidden  w-[390px] flex items-start justify-start ">
+              <div className=" overflow-y-hidden mb-[70px]  farm_wrapper overflow-x-scroll h-[400px] w-full flex flex-row items-center justify-start">
                 {Array.isArray(chicken) && chicken.length > 0 ? (
                   chicken.map((el, inx) => (
-                    <div key={inx} className="my-[65px] relative">
+                    <div key={inx} className="mx-[10px] relative">
                      
-                      <div className="chicken_farm my-5 flex items-center  justify-center  relative ">
-                        <div className="absolute bg-[#880b17]  -top-[64px] z-10 p-2 rounded-xl w-[350px]">
+                      <div className="chicken_farm mb-24 my-5 flex items-center  justify-center  relative ">
+                        <div className="absolute bg-[#6450cd94] backdrop-blur-[30px] flex justify-center items-center -top-[60px] pb-1 z-10 p-2 rounded-xl w-[350px]">
                            {
                             el.barnName === "bascic"?  <h2 className="text-md text-white font-black flex items-center">
                             Basic Farm total Eggs = {' '}
