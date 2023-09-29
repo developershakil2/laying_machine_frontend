@@ -57,11 +57,7 @@ const contact = () => {
   }, []);
 
   const returnFunc = ()=>{
-    push('/dashboard');
-
-        setTimeout(() => {
-           push('/farm')
-        }, 1000);
+  alert("Refresh");
    }
 
   const getData = () => {
