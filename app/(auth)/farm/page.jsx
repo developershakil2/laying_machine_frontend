@@ -445,7 +445,7 @@ const standardFunc = async () => {
               <div className=" overflow-y-hidden mb-[70px]  farm_wrapper overflow-x-scroll h-[400px] w-full flex flex-row items-center justify-start">
                 {Array.isArray(chicken) && chicken.length > 0 ? (
                   chicken.map((el, inx) => (
-                    <div key={inx} className="mx-[10px] relative">
+                    <div key={inx} className="mr-[15px] relative">
                      
                       <div className="chicken_farm mb-24 my-5 flex items-center  justify-center  relative ">
                         <div className="absolute bg-[#6450cd94] backdrop-blur-[30px] flex justify-center items-center -top-[60px] pb-1 z-10 p-2 rounded-xl w-[350px]">
