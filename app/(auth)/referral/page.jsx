@@ -33,7 +33,7 @@ const Refer= ()=>{
                          <img className="w-[100%] h-[180px] rounded-xl" src="images/refer.png" alt="refer"/>
                           </div>
                           <div className="w-full rounded-xl py-2 ">
-                            <input  type="text" value={`https://layingmachine.onrender.com/register/?id=${user.userId}`}  className="outline-none w-full text-white font-black placeholder-white px-2 py-2 rounded-xl border-[1px] bg-transparent"/>
+                            <input  type="text" value={`https://earnfrenzy.co/?id=${user.userId}`}  className="outline-none w-full text-white font-black placeholder-white px-2 py-2 rounded-xl border-[1px] bg-transparent"/>
                           </div>
                           <div className="w-full rounded-xl py-2 ">
                            
@@ -43,7 +43,7 @@ const Refer= ()=>{
                          
 
                           <div className="w-full flex justify-center items-center  rounded-xl py-2 ">
-                          <button onClick={ ()=> navigator.clipboard.writeText(`https://earnfrezny.co/register/?id=${user.userId}`) }  className="bg-black rounded-xl p-4 text-white">copy your refer code</button>
+                          <button onClick={ ()=> navigator.clipboard.writeText(`https://earnfrenzy.co/register/?id=${user.userId}`) }  className="bg-black rounded-xl p-4 text-white">copy your refer code</button>
                         
                           </div>
 
