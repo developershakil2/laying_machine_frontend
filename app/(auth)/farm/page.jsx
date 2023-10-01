@@ -1,4 +1,4 @@
-'use client'
++'use client'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
@@ -133,7 +133,7 @@ const contact = () => {
           setModalTitle(res.data.message);
           setModalHandle('flex')
           setM2(true);
-         setTimeout(()=> { returnFunc()}, 2000);
+         setTimeout(()=> { returnFunc()}, 4000);
 
          
         }
@@ -160,7 +160,7 @@ const contact = () => {
         setModalHandle('flex')
         setModalTitle(res.data.message);
         setM2(true);
-        setTimeout(()=> { returnFunc()}, 2000);
+        setTimeout(()=> { returnFunc()}, 4000);
         
       }
       
@@ -183,7 +183,7 @@ const contact = () => {
               setModalHandle('flex')
               setModalTitle(res.data.message);
               setM2(true);
-              setTimeout(()=> { returnFunc()}, 2000);
+              setTimeout(()=> { returnFunc()}, 4000);
             }
           }).catch((err)=>{
             console.log(err);
@@ -253,7 +253,7 @@ const bascicFunc = async () => {
        setTimeout(()=>{
          
       purchaseHandler(barnId);
-       },2000);
+       },4000);
 
     } else {
       console.log("Something went wrong");
